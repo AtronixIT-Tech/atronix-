@@ -91,7 +91,6 @@ def exploit_module():
         choice = input("\nEnter your choice: ").strip()
 
         if choice == "1":
-            target_url = input("Please, enter your target's URL: ").strip()
             run_script("Modules/Exploit_Module/sqlmap_exploit.py", target_url) 
         elif choice == "2":
             target_ip = input("Please, enter your target's SSH IP Address: ").strip()
