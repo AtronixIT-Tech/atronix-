@@ -40,7 +40,7 @@ def show_warning():
 
     agreement = input("Do you agree to these terms? [y for yes/ n for no]: ").strip().lower()
     if agreement != "y":
-        print("⚠ You must agree to the terms to use this tool. Exiting.")
+        print("⚠ You must agree to the terms to use this tool. Exiting...")
         sys.exit(1)
 
 def run_script(script_path, args=""):
@@ -65,11 +65,9 @@ def recon_module():
         choice = input("\nEnter your choice: ").strip()
 
         if choice == "1":
-            target_ip = input("Please, enter your target's private IP Address: ").strip()
-            run_script("Modules/Recon_Module/nmap_recon.py", target_ip)
+            run_script("Modules/Recon_Module/nmap_recon.py")
         elif choice == "2":
-            target_url = input("Please, enter your target's URL: ").strip()
-            run_script("Modules/Recon_Module/gobuster_enum.py", target_url)
+            run_script("Modules/Recon_Module/gobuster_enum.py")
         elif choice == "3":
             break
         else:
@@ -93,12 +91,11 @@ def exploit_module():
         if choice == "1":
             run_script("Modules/Exploit_Module/sqlmap_exploit.py") 
         elif choice == "2":
-            target_ip = input("Please, enter your target's SSH IP Address: ").strip()
-            authorization = input("Are you authorized to perform brute force testing? (y/n): ").strip().lower()
+            authorization = input("Are you authorized to perform brute force testing? [y for yes/ n for no]: ").strip().lower()
             if authorization == "y":
-                run_script("Modules/Exploit_Module/hydra_bruteforce.py", target_ip)
+                run_script("Modules/Exploit_Module/hydra_bruteforce.py")
             else:
-                print("❌ Unauthorized access is prohibited. Returning to the menu.")
+                print("❌ Unauthorized access is prohibited. Returning to the menu...")
         elif choice == "3":
             break
         else:
@@ -152,4 +149,3 @@ if __name__ == "__main__":
     show_banner()
     show_warning()
     main_menu()
-# Entry point for CTF Automation Tool
