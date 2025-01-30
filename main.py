@@ -74,7 +74,6 @@ def recon_module():
             print("⚠ Invalid choice. Please try again.")
 
 def exploit_module():
-    """Exploit Module based on the Blueprint."""
     while True:
         print("""
 	 +-+-+-+-+-+-+-+ +-+-+-+-+-+-+
