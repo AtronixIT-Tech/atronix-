@@ -35,50 +35,18 @@ def log_error(message):
     if os.path.exists(LOG_FILE):
         print(f"⚠ The error has been logged in: {LOG_FILE}")
 
-def check_root_privileges():
-    """
-    Check if the script is run with root privileges.
-    """
-    if os.geteuid() != 0:
-        log_error("Root privileges are required to run this script. Exiting.")
-        print("⚠ Root privileges are required to run this script. Please run it using 'sudo'. Exiting.")
-        exit(1)
-
-def show_warning():
-    """
-    Show an ethical use warning and require user agreement.
-    """
-    print("\n=============== Welcome to the Gobuster Module! ===============")
-    print("\n🚀 Welcome to the Gobuster tool! 🚀")
-    print("\n⚠ This tool is for ethical hacking and learning purposes only.")
-    print("⚠ Do not use it on unauthorized targets.")
-    print("\n⚠ WARNING: This tool is for ethical use only.")
-    print("By using this tool, you agree to:")
-    print("1. Use it only in controlled environments (e.g., CTFs).")
-    print("2. Never use it to scan unauthorized targets.")
-    print("3. Abide by all applicable laws and policies.")
-    agreement = input("\nDo you agree to these terms? [yes/no]: ").strip().lower()
-    if agreement == "no":
-        log_error("User declined the ethical use agreement.")
-        print("⚠ You must agree to the terms to use this tool. Exiting.")
-        exit(1)
-    elif agreement != "yes":
-        log_error(f"Invalid response to ethical agreement: '{agreement}'.")
-        print("⚠ Invalid input. Please restart the script and respond with 'yes' or 'no'. Exiting.")
-        exit(1)
-
-    print("\n================================================================")
-    print("WARNING: This script should only be used in a controlled environment.")
-    print("Unauthorized scanning of external or public IPs may violate laws and policies.")
-    print("Ensure you have proper permissions before proceeding.")
-    print("================================================================\n")
-
 def validate_url_or_ip(target):
     """
     Validate if the given target is a valid URL or IP address.
     - Returns True if valid.
     - Logs an error and returns False if invalid.
     """
+    if not target.strip():
+        error_msg = "⚠ ERROR: Target IP or URL is required. Please try again."
+        log_error(error_msg)
+        print(error_msg)
+        return False
+    
     try:
         parsed = urlparse(target)
         if parsed.scheme in ["http", "https"]:
@@ -128,8 +96,6 @@ def run_gobuster(url):
 
 if __name__ == "__main__":
     setup_logging()
-    check_root_privileges()
-    show_warning()
     url = input("Enter the target URL or IP address (e.g., http://192.168.56.105): ").strip()
     if validate_url_or_ip(url):
         run_gobuster(url)
