@@ -31,16 +31,6 @@ def log_error(message):
     if os.path.exists(LOG_FILE):
         print(f"⚠ The error has been logged in: {LOG_FILE}")
 
-def warn_if_uncontrolled_environment():
-    """
-    Display a warning to ensure the script is run in a controlled, private environment.
-    """
-    print("\n================================================================")
-    print("WARNING: This script should only be used in a controlled environment.")
-    print("Unauthorized scanning of external or public IPs may violate laws and policies.")
-    print("Ensure you have proper permissions before proceeding.")
-    print("================================================================\n")
-
 def validate_ip_address(ip):
     """
     Validate if the given IP address is private and log unauthorized attempts.
@@ -68,7 +58,7 @@ def run_nmap_syn_scan(target_ip):
         return
 
     os.makedirs('outputs', exist_ok=True)
-    command = ["sudo", "nmap", "-sS", "-vv", "-T4", target_ip]
+    command = ["nmap", "-sS", "-vv", "-T4", target_ip]
 
     try:
         print(f"\nRunning Nmap SYN scan on all ports for {target_ip}...\n")
@@ -100,32 +90,6 @@ def run_nmap_syn_scan(target_ip):
 
 def main():
     setup_logging()
-
-    if os.geteuid() != 0:
-        log_error("Root privileges are required to run this script. Exiting.")
-        print("\n⚠ ERROR: Root privileges are required to run this script. Exiting.")
-        exit(1)
-
-    print("\n=============== Welcome to the NMAP Module! ===============")
-    print("\n🚀 Welcome to the NMAP Tool! 🚀")
-    print("\n⚠ This tool is for ethical hacking and learning purposes only.")
-    print("⚠ Do not use it on unauthorized targets.")
-    print("\n⚠ WARNING: This tool is for ethical use only.")
-    print("By using this tool, you agree to:")
-    print("1. Use it only in controlled environments (e.g., CTFs).")
-    print("2. Never use it to scan unauthorized targets.")
-    print("3. Abide by all applicable laws and policies.")
-    agreement = input("\nDo you agree to these terms? [yes/no]: ").strip().lower()
-
-    if agreement != 'yes':
-        log_error("User did not agree to the ethical use terms. Exiting.")
-        print("\n⚠ ERROR: User did not agree to the ethical use terms. Exiting.")
-        if os.path.exists(LOG_FILE):
-            print(f"⚠ The error has been logged in: {LOG_FILE}")
-        print("⚠ You did not agree to the terms of use. Exiting.")
-        exit(1)
-
-    warn_if_uncontrolled_environment()
 
     target_ip = input("\nEnter target IP address: ").strip()
     if not target_ip:
