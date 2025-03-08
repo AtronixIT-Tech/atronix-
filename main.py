@@ -14,18 +14,7 @@ def show_banner():
 This tool helps automate repetitive tasks in CTF challenges.
 
 ⚠️ This tool is intended for ethical and legal use only. Any misuse of this tool is strictly prohibited. ⚠️
-
-
-<!-- /=========================================================================================================================\ -->
-<!-- ||                                                                                                                       || -->
-<!-- ||    _  _____ ____   ___  _   _ _____  __    ___ _____     ___       ____   ___  _    _   _ _____ ___ ___  _   _ ____   || -->
-<!-- ||   / \|_   _|  _ \ / _ \| \ | |_ _\ \/ /   |_ _|_   _|   ( _ )     / ___| / _ \| |  | | | |_   _|_ _/ _ \| \ | / ___|  || -->
-<!-- ||  / _ \ | | | |_) | | | |  \| || | \  /     | |  | |     / _ \/\   \___ \| | | | |  | | | | | |  | | | | |  \| \___ \  || -->
-<!-- || / ___ \| | |  _ <| |_| | |\  || | /  \     | |  | |    | (_>  <    ___) | |_| | |__| |_| | | |  | | |_| | |\  |___) | || -->
-<!-- ||/_/   \_\_| |_| \_|\___/|_| \_|___/_/\_\   |___| |_|     \___/\/   |____/ \___/|_____\___/  |_| |___\___/|_| \_|____/  || -->
-<!-- ||                                                                                                                       || -->
-<!-- \=========================================================================================================================/ -->
-    """
+"""
     print(banner)
 
 def show_warning():
@@ -50,6 +39,7 @@ def run_script(script_path, args=""):
     except subprocess.CalledProcessError:
         print(f"⚠ Error occurred while running {script_path}.")
 
+### RECON MODULE ###
 def recon_module():
     while True:
         print("""
@@ -73,6 +63,7 @@ def recon_module():
         else:
             print("⚠ Invalid choice. Please try again.")
 
+### EXPLOIT MODULE ###
 def exploit_module():
     while True:
         print("""
@@ -100,21 +91,85 @@ def exploit_module():
         else:
             print("⚠ Invalid choice. Please try again.")
 
+### FLAG EXTRACTION MODULE ###
 def flag_extraction_module():
-    """Flag Extraction Module (Under Construction)."""
-    print("\n🏴 Launching Flag Extraction Module...\n")
-    print("⚠ This module is under construction.")
+    while True:
+        print("""
+	 +-+-+-+-+-+ +-+-+-+-+-+-+-+-+
+	 |F|l|a|g| |E|x|t|r|a|c|t|i|o|n|
+	 +-+-+-+-+-+ +-+-+-+-+-+-+-+-+ """)
+        print("\n")
 
+        print("1. File Extraction")
+        print("2. Steganography Analysis")
+        print("3. Go Back")
+
+        choice = input("\nEnter your choice: ").strip()
+
+        if choice == "1":
+            run_script("Modules/Flag_Extraction_Module/file_extraction.py")
+        elif choice == "2":
+            run_script("Modules/Flag_Extraction_Module/stego_analysis.py")
+        elif choice == "3":
+            break
+        else:
+            print("⚠ Invalid choice. Please try again.")
+
+### CRYPTO SOLVER MODULE ###
 def crypto_solver_module():
-    """Crypto Solver Module (Under Construction)."""
-    print("\n🔑 Launching Crypto Solver Module...\n")
-    print("⚠ This module is under construction.")
+    while True:
+        print("""
+	 +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
+	 |C|r|y|p|t|o| |S|o|l|v|e|r| |M|o|d|u|l|e|
+	 +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ """)
+        print("\n")
 
+        print("1. Base64 Decoder")
+        print("2. Hex & Binary Decoder")
+        print("3. ROT13 Decoder")
+        print("4. Go Back")
+
+        choice = input("\nEnter your choice: ").strip()
+
+        if choice == "1":
+            run_script("Modules/Crypto_Module/base64_decoder.py")
+        elif choice == "2":
+            run_script("Modules/Crypto_Module/hex_binary_decoder.py")
+        elif choice == "3":
+            run_script("Modules/Crypto_Module/rot13_decoder.py")
+        elif choice == "4":
+            break
+        else:
+            print("⚠ Invalid choice. Please try again.")
+
+### FORENSICS MODULE ###
 def forensics_module():
-    """Forensics Module (Under Construction)."""
-    print("\n🔬 Launching Forensics Module...\n")
-    print("⚠ This module is under construction.")
+    while True:
+        print("""
+	 +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+	 |F|o|r|e|n|s|i|c|s| |M|o|d|u|l|e|
+	 +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+ """)
+        print("\n")
 
+        print("1. Metadata Analysis")
+        print("2. Hidden File Extraction")
+        print("3. Memory Dump Analysis")
+        print("4. Go Back")
+
+        choice = input("\nEnter your choice: ").strip()
+
+        if choice == "1":
+            run_script("Modules/Forensic_Module/metadata_analysis.py")
+        elif choice == "2":
+            run_script("Modules/Forensic_Module/hidden_file_extraction.py")
+        elif choice == "3":
+            run_script("Modules/Forensic_Module/memory_dump_analysis.py")
+        elif choice == "4":
+            break
+        else:
+            print("⚠ Invalid choice. Please try again.")
+
+### MAIN MENU ###
 def main_menu():
     """Display the main menu and handle user selection."""
     while True:
