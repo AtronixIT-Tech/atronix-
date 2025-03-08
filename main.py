@@ -74,7 +74,8 @@ def exploit_module():
 
         print("1. SQL Injection Testing")
         print("2. SSH Brute Forcing")
-        print("3. Go Back")
+	print("3. Weak Login Test")
+        print("4. Go Back")
 
         choice = input("\nEnter your choice: ").strip()
 
