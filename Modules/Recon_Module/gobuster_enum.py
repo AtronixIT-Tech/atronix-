@@ -90,6 +90,7 @@ def run_gobuster(url):
         print("2. Investigate any unusual or unexpected endpoints.")
         print("3. Attempt to access secured areas or files indicated in the results.")
         print("4. Use the findings to further assess the security of the target application.")
+        print("\n💡 **Hint:** Try searching 'http://192.168.56.107/dvwa' and look for a link that includes 'docs'. This may provide helpful information for the SQL Injection section.")
     except subprocess.CalledProcessError as e:
         log_error(f"Failed to run Gobuster: {str(e)}")
         print(f"⚠ An error occurred while running Gobuster: {str(e)}")
@@ -99,3 +100,5 @@ if __name__ == "__main__":
     url = input("Enter the target URL or IP address (e.g., http://192.168.56.105): ").strip()
     if validate_url_or_ip(url):
         run_gobuster(url)
+
+    print("\n🔍 **SQL Injection Tip:** In the SQL section, try using common parameters such as 'id=1'. Many vulnerable web applications use 'id' parameters to fetch database records, making them common targets for injection attempts.")
