@@ -66,22 +66,27 @@ Open a terminal in Kali Linux.
 Navigate to the /media directory to check if the shared folder is available:
 
 ls /media/
+
 You should see something like sf_atronix--main.
 
 Copy the folder to your home directory:
 
 cp -r /media/sf_atronix--main ~/atronix--main
+
 If the shared folder has a (1) at the end, you must escape the parentheses like this:
 
 cp -r /media/sf_atronix--main_\(1\) ~/atronix--main
+
 3. Navigate to the Project Directory
 Once copied, move into the project folder:
 
 cd ~/atronix--main/atronix--main
+
 4. Verify Files
 Check if main.py and required folders exist:
 
 ls -l
+
 You should see main.py and directories like Modules, Logs, and Outputs.
 
 5. Install Dependencies
@@ -89,7 +94,9 @@ Ensure required dependencies are installed:
 
 pip3 install -r requirements.txt
 6. Run the Tool
+
 Start the CTF Automation Tool by running:
+
 python3 main.py
 
 🛠️ How to Use Each Module
