@@ -77,12 +77,12 @@ If the shared folder has a (1) at the end, you must escape the parentheses like 
 
 cp -r /media/sf_atronix--main_\(1\) ~/atronix--main
 
-3. Navigate to the Project Directory
+2. Navigate to the Project Directory
 Once copied, move into the project folder:
 
 cd ~/atronix--main/atronix--main
 
-4. Verify Files
+3. Verify Files
 Check if main.py and required folders exist:
 
 ls -l
