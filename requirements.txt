@@ -1,2 +1,43 @@
-pyperclip
+ Requirements for CTF Automation Tool
+To ensure the CTF Automation Tool runs smoothly, you need to have the following dependencies installed.
 
+🖥️ System Requirements
+Operating System: Kali Linux, Parrot OS, Ubuntu, or any Linux-based system.
+Python Version: Python 3.7+ is required.
+Disk Space: Minimum 500MB free space (for logs, outputs, and dependencies).
+Permissions: Ensure root access for scanning and exploitation modules.
+
+General Dependencies 
+-python3 (Make sure Python 3 is installed)
+-pip (Python package manager)
+Package-Specific Dependencies
+These are the packages required for specific modules:
+
+-Reconnaissance (Nmap & Gobuster)
+nmap (Install using: sudo apt install nmap)
+gobuster (Install using: sudo apt install gobuster)
+
+-Exploitation (SQL Injection & Weak Login Check)
+sqlmap (Install using: sudo apt install sqlmap)
+requests (Install using: pip3 install requests)
+bs4 (BeautifulSoup for HTML parsing, Install using: pip3 install beautifulsoup4)
+time (Included in Python, no need to install)
+logging (Included in Python, used for logging errors)
+
+-Flag Extraction (File Extraction & Steganography)
+steghide (Install using: sudo apt install steghide)
+subprocess (Included in Python, used for running commands)
+os (Included in Python, used for file handling)
+
+-Crypto Solvers (Caesar Cipher, Base64, Hex & Binary)
+string (Included in Python, used for character manipulation)
+base64 (Included in Python, used for decoding Base64)
+logging (Included in Python)
+
+-Forensics (Memory Dump Analysis & PCAP Analysis)
+paramiko (For SSH connections, Install using: pip3 install paramiko)
+getpass (Included in Python, used for password input)
+ipaddress (Included in Python, used for validating IPs)
+john (John the Ripper for hash cracking, Install using: sudo apt install john)
+wireshark (For analyzing PCAP files, Install using: sudo apt install wireshark)
+tshark (Command-line tool for PCAP analysis, Install using: sudo apt install tshark)
