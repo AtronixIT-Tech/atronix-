@@ -89,12 +89,6 @@ ls -l
 
 You should see main.py and directories like Modules, Logs, and Outputs.
 
-5. Install Dependencies
-Ensure required dependencies are installed:
-
-pip3 install -r requirements.txt
-6. Run the Tool
-
 Start the CTF Automation Tool by running:
 
 python3 main.py
