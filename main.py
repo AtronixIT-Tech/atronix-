@@ -74,7 +74,7 @@ def exploit_module():
 
         print("1. SQL Injection Testing")
         print("2. SSH Brute Forcing")
-	print("3. Weak Login Test")
+        print("3. Weak Login Test")
         print("4. Go Back")
 
         choice = input("\nEnter your choice: ").strip()
@@ -88,6 +88,8 @@ def exploit_module():
             else:
                 print("❌ Unauthorized access is prohibited. Returning to the menu...")
         elif choice == "3":
+            run_script("Modules/Exploit_Module/Weak_login.py")  # Fixed Weak Login Test Path
+        elif choice == "4":
             break
         else:
             print("⚠ Invalid choice. Please try again.")
@@ -108,9 +110,9 @@ def flag_extraction_module():
         choice = input("\nEnter your choice: ").strip()
 
         if choice == "1":
-            run_script("Modules/Flag_Extraction_Module/file_extraction.py")
+            run_script("Modules/Flag_Extraction_Module/flag_search.py")
         elif choice == "2":
-            run_script("Modules/Flag_Extraction_Module/stego_analysis.py")
+            run_script("Modules/Flag_Extraction_Module/steg_extract.py")
         elif choice == "3":
             break
         else:
@@ -125,19 +127,19 @@ def crypto_solver_module():
 	 +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ """)
         print("\n")
 
-        print("1. Base64 Decoder")
+        print("1. Base64 & ROT13 Decoder")
         print("2. Hex & Binary Decoder")
-        print("3. ROT13 Decoder")
+        print("3. Caesar Cipher Brute Force")
         print("4. Go Back")
 
         choice = input("\nEnter your choice: ").strip()
 
         if choice == "1":
-            run_script("Modules/Crypto_Module/base64_decoder.py")
+            run_script("Modules/Crypto_Module/Base64 and ROT13.py")
         elif choice == "2":
-            run_script("Modules/Crypto_Module/hex_binary_decoder.py")
+            run_script("Modules/Crypto_Module/Hex and Binary.py")
         elif choice == "3":
-            run_script("Modules/Crypto_Module/rot13_decoder.py")
+            run_script("Modules/Crypto_Module/Caesar_Bruteforce.py")
         elif choice == "4":
             break
         else:
@@ -152,20 +154,17 @@ def forensics_module():
 	 +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+ """)
         print("\n")
 
-        print("1. Metadata Analysis")
-        print("2. Hidden File Extraction")
-        print("3. Memory Dump Analysis")
-        print("4. Go Back")
+        print("1. Memory Dump Analysis")
+        print("2. PCAP File Analysis")
+        print("3. Go Back")
 
         choice = input("\nEnter your choice: ").strip()
 
         if choice == "1":
-            run_script("Modules/Forensic_Module/metadata_analysis.py")
+            run_script("Modules/Forensic_Module/Memory_Dump.py")
         elif choice == "2":
-            run_script("Modules/Forensic_Module/hidden_file_extraction.py")
+            run_script("Modules/Forensic_Module/PCAP.py")
         elif choice == "3":
-            run_script("Modules/Forensic_Module/memory_dump_analysis.py")
-        elif choice == "4":
             break
         else:
             print("⚠ Invalid choice. Please try again.")
