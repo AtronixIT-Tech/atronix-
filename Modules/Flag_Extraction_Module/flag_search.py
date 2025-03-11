@@ -55,69 +55,6 @@ def list_files_in_common_dirs(host, ssh_user, ssh_password, directories):
         client.close()
     return results
 
-def view_file_content(host, ssh_user, ssh_password, file_path):
-    """ View the contents of a specific file on a remote machine. """
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        client.connect(host, username=ssh_user, password=ssh_password, timeout=10)
-        command = f"cat {file_path}"
-        stdin, stdout, stderr = client.exec_command(command)
-        
-        if stdout.channel.recv_exit_status() == 0:
-            return stdout.read().decode().strip()
-        else:
-            return f"Error reading file: {stderr.read().decode().strip()}"
-    finally:
-        client.close()
-
-def view_directory_contents(host, ssh_user, ssh_password, directory_path):
-    """ View the contents of a specified directory. """
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        client.connect(host, username=ssh_user, password=ssh_password, timeout=10)
-        command = f"ls -la {directory_path}"
-        stdin, stdout, stderr = client.exec_command(command)
-        
-        if stdout.channel.recv_exit_status() == 0:
-            return stdout.read().decode().strip()  # Directory contents
-        else:
-            return f"Error reading directory: {stderr.read().decode().strip()}"
-    finally:
-        client.close()
-
-def search_keyword_in_file(host, ssh_user, ssh_password, file_path, keyword):
-    """ Search for a specific keyword inside a file. """
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        client.connect(host, username=ssh_user, password=ssh_password, timeout=10)
-        command = f"grep -i '{keyword}' {file_path}"
-        stdin, stdout, stderr = client.exec_command(command)
-        
-        if stdout.channel.recv_exit_status() == 0:
-            return stdout.read().decode().strip()
-        else:
-            return f"❌ No matches found for '{keyword}' in {file_path}."
-    finally:
-        client.close()
-
-def download_file(host, ssh_user, ssh_password, remote_file_path, local_file_path):
-    """ Download a file from the remote machine to the local machine. """
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        client.connect(host, username=ssh_user, password=ssh_password, timeout=10)
-        sftp = client.open_sftp()
-        sftp.get(remote_file_path, local_file_path)  # Download the file
-        sftp.close()
-        return f"✅ Successfully downloaded {remote_file_path} to {local_file_path}"
-    except Exception as e:
-        return f"❌ Error downloading file: {str(e)}"
-    finally:
-        client.close()
-
 if __name__ == "__main__":
     target_host = input("Enter the target host IP or hostname: ").strip()
     if not target_host:
@@ -134,7 +71,7 @@ if __name__ == "__main__":
     password = input("Enter SSH password: ").strip()
 
     # Show the hint immediately after credentials are entered
-    print("\n💡 **Hint:** Don't forget to download images for steganography analysis and any files that seem important! 🔍")
+    print("\n💡 **Hint:** Don't forget to download images for steganography analysis and any files that seem important! 🔍\n")
 
     common_directories = ["/home", "/root", "/var/www", "/etc", "/etc/shadow"]
 
@@ -158,35 +95,13 @@ if __name__ == "__main__":
 
         choice = input("\nSelect an option (1/2/3/4/5): ").strip()
 
-        if choice == "1":
-            directory_to_view = input("📂 Enter the full path of the directory you want to view: ").strip()
-            directory_content = view_directory_contents(target_host, username, password, directory_to_view)
-            print("\n📂 Directory contents:")
-            print(directory_content)
-        
-        elif choice == "2":
-            file_to_view = input("📄 Enter the full path of the file you want to view: ").strip()
-            file_content = view_file_content(target_host, username, password, file_to_view)
-            print("\n📄 File contents:")
-            print(file_content)
-        
-        elif choice == "3":
-            file_to_search = input("🔍 Enter the full path of the file you want to search in: ").strip()
-            keyword = input("🔎 Enter the keyword to search for: ").strip()
-            search_results = search_keyword_in_file(target_host, username, password, file_to_search, keyword)
-            print("\n🔍 Search results:")
-            print(search_results)
-
-        elif choice == "4":
-            remote_file_path = input("📄 Enter the full path of the file you want to download: ").strip()
-            local_file_path = input("💾 Enter the local path to save the file: ").strip()
-            download_result = download_file(target_host, username, password, remote_file_path, local_file_path)
-            print("\n📥 Download result:")
-            print(download_result)
-
-        elif choice == "5":
+        if choice == "5":
             print("\n🚀 **Task complete. Exiting.**")
             break
+
+    # **Ensuring the hint appears AFTER exiting**
+    print("\n💡 **Hint:** Don't forget to download images for steganography analysis and any files that seem important! 🔍")
+
 
 
 
