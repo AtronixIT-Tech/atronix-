@@ -27,16 +27,16 @@ def log_error(message):
 
 # Validate file input
 def validate_file(image_path):
-    if not image_path:  # Check if user enters nothing
+    if not image_path:  
         log_error("No input provided. Please enter a valid file path.")
         exit()
-    if not os.path.isfile(image_path):  # Check if file exists
+    if not os.path.isfile(image_path):  
         log_error(f"File does not exist: {image_path}")
         return False
     return True
 
 def check_hidden_data(image_path):
-    """Accurately checks if an image contains hidden data using steghide."""
+    """Checks if an image contains hidden data using steghide."""
     try:
         result = subprocess.run(["steghide", "info", image_path], capture_output=True, text=True)
         output = result.stdout.strip().lower()
@@ -44,32 +44,14 @@ def check_hidden_data(image_path):
         print("\n[DEBUG] Steghide Output:\n", output, "\n")
         logging.info("[INFO] Steghide output for %s: %s", image_path, output)
 
-        no_data_indicators = [
-            "nothing to do",
-            "not embedded",
-            "no file is embedded",
-            "could not open file",
-            "no embedded data"
-        ]
-        
-        if any(phrase in output for phrase in no_data_indicators):
+        if "no embedded data" in output or "nothing to do" in output:
             print("[INFO] No hidden data found.")
             logging.info("[INFO] No hidden data in %s", image_path)
             return False
-
-        if "capacity" in output and "encryption method" not in output and "file size" not in output:
-            print("[WARNING] Unclear Steghide output. Hidden data may still be present. Forcing extraction.")
-            logging.warning("[WARNING] Unclear Steghide output for %s. Forcing extraction.", image_path)
-            return True  
         
-        if "file size:" in output or "encryption method:" in output:
-            print("[SUCCESS] Hidden data detected!")
-            logging.info("[SUCCESS] Hidden data found in %s", image_path)
-            return True
-        
-        print("[INFO] No clear indication of hidden data. Assuming no hidden content.")
-        logging.warning("[WARNING] Steghide output unclear for %s. Assuming no hidden data.", image_path)
-        return False
+        print("[SUCCESS] Hidden data detected!")
+        logging.info("[SUCCESS] Hidden data found in %s", image_path)
+        return True
 
     except Exception as e:
         log_error(f"Error checking hidden data: {e}")
@@ -78,6 +60,7 @@ def check_hidden_data(image_path):
 def extract_hidden_data(image_path, password=None):
     """Extracts hidden data from an image using steghide."""
     output_file = os.path.join(OUTPUT_DIR, "extracted_data.txt")
+
     try:
         if os.path.exists(output_file):
             os.remove(output_file)
@@ -91,6 +74,10 @@ def extract_hidden_data(image_path, password=None):
 
         if "could not extract" in output or not os.path.exists(output_file):
             log_error(f"Failed to extract data from {image_path}")
+            return False
+        
+        if os.path.getsize(output_file) == 0:
+            log_error(f"Extraction resulted in an empty file: {output_file}")
             return False
         
         print(f"[SUCCESS] Hidden data extracted to {output_file}")
@@ -157,11 +144,11 @@ def display_results(image_path, hidden_data_found, extracted_data_path):
 if __name__ == "__main__":
     image = input("Enter the path of the image (e.g., /home/kali/image.jpg): ").strip()
 
-    if not validate_file(image):  # Ensures error handling applies before proceeding
+    if not validate_file(image):  
         exit()
 
     print("Press 'ENTER' to continue...")
-    input()  # This keeps the user interaction as expected
+    input()  
 
     hidden_data_found = check_hidden_data(image)
     extracted_data_path = os.path.join(OUTPUT_DIR, "extracted_data.txt")
@@ -178,3 +165,4 @@ if __name__ == "__main__":
                 brute_force(image, wordlist)
 
     display_results(image, hidden_data_found, extracted_data_path)
+
