@@ -213,13 +213,16 @@ if __name__ == "__main__":
         else:
             print("\n⚠ Invalid choice. Please select a valid option.")
 
-    # Summary and guidance
+     # Summary and guidance
     print("\n🚀 **Task complete.**")
     print("✔ Listed files in common directories")
     print("✔ Allowed manual selection of files and directories for viewing")
     print("✔ **Added feature to view directory contents**")
     print("✔ **Added keyword search feature**")
     print("✔ **Added download file feature**")
+
+    # FINAL HINT ADDED HERE
+    print("\n💡 **Hint:** Don't forget to download images for steganography analysis and any files that seem important! 🔍")
 
 
 
