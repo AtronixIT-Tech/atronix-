@@ -221,8 +221,6 @@ if __name__ == "__main__":
     print("✔ **Added keyword search feature**")
     print("✔ **Added download file feature**")
 
-    # FINAL HINT ADDED HERE
-    print("\n💡 **Hint:** Don't forget to download images for steganography analysis and any files that seem important! 🔍")
-
+   
 
 
