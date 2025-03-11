@@ -132,6 +132,10 @@ if __name__ == "__main__":
 
     username = input("Enter SSH username: ").strip()
     password = input("Enter SSH password: ").strip()
+
+    # Show the hint immediately after credentials are entered
+    print("\n💡 **Hint:** Don't forget to download images for steganography analysis and any files that seem important! 🔍")
+
     common_directories = ["/home", "/root", "/var/www", "/etc", "/etc/shadow"]
 
     directory_contents = list_files_in_common_dirs(target_host, username, password, common_directories)
@@ -184,4 +188,4 @@ if __name__ == "__main__":
             print("\n🚀 **Task complete. Exiting.**")
             break
 
-    print("\n💡 **Hint:** Don't forget to download images for steganography analysis and any files that seem important! 🔍")
+
