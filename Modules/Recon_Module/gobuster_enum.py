@@ -90,7 +90,7 @@ def run_gobuster(url):
         print("2. Investigate any unusual or unexpected endpoints.")
         print("3. Attempt to access secured areas or files indicated in the results.")
         print("4. Use the findings to further assess the security of the target application.")
-        print("\n💡 **Hint:** Try searching 'http://192.168.56.107/dvwa' and look for a link that includes 'docs'. This may provide helpful information for the SQL Injection section.")
+        print("\n💡 **Hint:** Try searching 'http://192.168.56.107/dvwa' and look for a link that includes 'pdf'. This may provide helpful information for the SQL Injection section (sql link).")
     except subprocess.CalledProcessError as e:
         log_error(f"Failed to run Gobuster: {str(e)}")
         print(f"⚠ An error occurred while running Gobuster: {str(e)}")
