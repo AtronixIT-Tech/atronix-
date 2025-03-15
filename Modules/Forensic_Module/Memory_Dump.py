@@ -51,11 +51,10 @@ def connect_ssh(host, user, password):
         exit(1)
 
 def list_files(client):
-    # Searching in /home/dvwa instead of just /tmp
-    stdin, stdout, stderr = client.exec_command("ls -lh /home/dvwa/*.lime 2>/dev/null")
+    stdin, stdout, stderr = client.exec_command("ls -lh /tmp/*.lime 2>/dev/null")
     files = stdout.read().decode().strip()
     if not files:
-        log_and_inform("No memory dump files found in /home/dvwa/")
+        log_and_inform("No memory dump files found in /tmp/")
         return None
     print("\n[+] Available Memory Dump Files:\n")
     print(files)
@@ -90,7 +89,7 @@ It contains all the data stored in memory, including running processes, password
 What did this tool do?
 ----------------------
 - It connected to the remote machine over SSH.
-- It listed available memory dump files in /home/dvwa.
+- It listed available memory dump files in /tmp.
 - You selected a file, and the tool extracted all printable strings from it using the `strings` command.
 - This helps you look for passwords, usernames, IP addresses, and other clues.
 
@@ -183,3 +182,4 @@ if __name__ == "__main__":
             exit(0)
         else:
             log_and_inform(f"Invalid choice entered: {choice}")
+
