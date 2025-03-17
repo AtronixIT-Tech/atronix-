@@ -135,9 +135,9 @@ def crypto_solver_module():
         choice = input("\nEnter your choice: ").strip()
 
         if choice == "1":
-            run_script("Modules/Crypto_Module/Base64_ROT13.py")
+            run_script("Modules/Crypto_Module/Base64 and ROT13.py")
         elif choice == "2":
-            run_script("Modules/Crypto_Module/Hex_Binary.py")
+            run_script("Modules/Crypto_Module/Hex and Binary.py")
         elif choice == "3":
             run_script("Modules/Crypto_Module/Caesar_Bruteforce.py")
         elif choice == "4":
