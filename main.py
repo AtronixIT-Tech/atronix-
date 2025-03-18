@@ -6,12 +6,17 @@ import subprocess
 def show_banner():
     """Display the tool banner."""
     banner = """
- 🚀 Welcome to the CTF Automation Tool! 🚀
+    ___    ___    ___    ___    _ _    _ __    _   _    ___    _     ___    ___    _    _  _    ___  
+   | . ||_ _|| . \| . || \ || |\ \/   | ||_ _| < >   / __>| . || |  | | ||_ _|| || . || \ |/ __>
+   |   | | | |   /| | ||   || | \ \   | | | |  /.\/  \__ \| | || |_ | ' | | | | || | ||   |\__ \ 
+   |_|_| |_| |_\_\`___'|_\_||_|_/\_\  |_| |_|  \_/\  <___/`___'|___|`___' |_| |_|`___'|_\_|<___/
+   
+    🚀 Welcome to the Atronix CTF Automation Tool! 🚀
 
-This tool helps automate repetitive tasks in CTF challenges.
+    This tool helps automate repetitive tasks in CTF challenges.
 
-⚠️ This tool is intended for ethical and legal use only. Any misuse of this tool is strictly prohibited. ⚠️
-"""
+    ⚠️ This tool is intended for ethical and legal use only. Any misuse of this tool is strictly prohibited. ⚠️
+    """
     print(banner)
 
 def show_warning():
@@ -197,6 +202,6 @@ def main_menu():
             print("\n⚠ Invalid choice. Please try again.")
 
 if __name__ == "__main__":
-    show_banner()
-    show_warning()
-    main_menu()
+    show_banner()  # Atronix banner is shown here
+    show_warning()  # Warning displayed here
+    main_menu()  # Main menu is displayed here
