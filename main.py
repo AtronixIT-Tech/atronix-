@@ -2,9 +2,6 @@ import os
 import sys
 import subprocess
 
-# Ensure required directories exist
-os.makedirs("logs", exist_ok=True)
-os.makedirs("outputs", exist_ok=True)
 
 def show_banner():
     """Display the tool banner."""
