@@ -15,7 +15,7 @@ def setup_logging():
         os.makedirs('logs', exist_ok=True)
         if not os.access("logs", os.W_OK):
             raise PermissionError("The 'logs' directory is not writable.")
-        logging.basicConfig(filename=LOG_FILE, level=logging.ERROR,  # Change logging level to ERROR
+        logging.basicConfig(filename=LOG_FILE, level=logging.INFO,
                             format='%(asctime)s - %(levelname)s - %(message)s')
     except PermissionError as e:
         print(f"\n⚠ Logging setup failed: {e}")
